@@ -4,10 +4,11 @@ const fs = require('fs');
 
 const requestHandler = (request, response) => {
     fs.writeFile('hello-world.txt', 'Hello to this great world', 'utf8', (err) => {
-        if(err) throw err;
-        console.log('success');
+        if(err) {
+            response.end('There was an error');
+        }
+        response.end('Success!')
     })
-    response.end('File Created')
 }
 
 const server = http.createServer(requestHandler);
